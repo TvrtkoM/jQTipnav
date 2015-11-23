@@ -1,0 +1,36 @@
+[data-jqtipnav] {
+  background: #fff;
+  padding: 0.4em;
+  border: 1px solid black;
+}
+[data-jqtipnav] ul {
+  list-style-type: none;
+}
+[data-jqtipnav] ul, [data-jqtipnav] ul li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+[data-jqtipnav] ul li {
+  font-size: 0.8em;
+  padding: 3px 2px;
+}
+[data-jqtipnav] ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+[data-jqtipnav] ul li a:visited {
+  color: inherit;
+}
+[data-jqtipnav] ul li a:hover {
+  text-decoration: underline;
+}
+.text-center {
+  text-align: center;
+}
+pre {
+  font-size: 0.76em;
+  background: #d1d1d1;
+  padding: 5px;
+  margin-top: 0;
+}

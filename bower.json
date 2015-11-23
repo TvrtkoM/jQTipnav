@@ -1,0 +1,13 @@
+{
+  "name": "jquery-tip-navigation",
+  "authors": [
+    "Tvrtko Majstorović <tvrtkom@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "~2.1.4"
+  },
+  "devDependencies": {
+    "skeleton": "~2.0.4"
+  }
+}
