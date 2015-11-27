@@ -42,4 +42,4 @@ Have some ideas to make this plugin work better or want to add a feature? Follow
 
 Jasmine is used for test cases which are in spec.js file and writing some along with added code would be really helpful.
 
-Use *grunt build* to build the binaries.
+Use *grunt build* to build the binaries and *bower install* to get jQuery (it will be downloaded to vendor directory).
