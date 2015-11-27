@@ -1,6 +1,15 @@
 module.exports = function(grunt) {
   'use strict';
   grunt.initConfig({
+    watch: {
+      js: {
+        options: {
+          interrupt: true
+        },
+        files: ['es2015-src/*'],
+        tasks: ['babel:build']
+      }
+    },
     karma: {
       options: {
         configFile: 'karma.conf.js',
@@ -55,11 +64,11 @@ module.exports = function(grunt) {
         }
       }
     }
-
   });
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-lodash');

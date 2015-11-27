@@ -7,20 +7,21 @@
   },
   "main": "js/jquery.tipnav.js",
   "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-karma": "0.12.1",
-    "jasmine": "2.3.2",
-    "karma": "0.13.14",
-    "karma-jasmine": "0.3.6",
-    "jasmine-jquery": "2.1.1",
-    "karma-firefox-launcher": "0.1.6",
-    "lodash-cli": "~3.10.1",
-    "grunt-lodash": "~0.5.0",
-    "babel-preset-es2015": "~6.1.18",
     "babel-cli": "~6.2.0",
+    "babel-preset-es2015": "~6.1.18",
+    "grunt": "0.4.5",
     "grunt-babel": "~6.0.0",
     "grunt-contrib-concat": "~0.5.1",
+    "grunt-contrib-cssmin": "~0.14.0",
     "grunt-contrib-uglify": "~0.11.0",
-    "grunt-contrib-cssmin": "~0.14.0"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "0.12.1",
+    "grunt-lodash": "~0.5.0",
+    "jasmine": "2.3.2",
+    "jasmine-jquery": "2.1.1",
+    "karma": "0.13.14",
+    "karma-firefox-launcher": "0.1.6",
+    "karma-jasmine": "0.3.6",
+    "lodash-cli": "~3.10.1"
   }
 }
