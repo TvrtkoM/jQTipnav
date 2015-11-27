@@ -3,7 +3,7 @@
   "authors": [
     "Tvrtko Majstorović <tvrtkom@gmail.com>"
   ],
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "jquery": "~2.1.4"
   },
