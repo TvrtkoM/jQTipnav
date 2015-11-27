@@ -140,7 +140,7 @@ describe('main application', function() {
   });
 });
 
-describe('tipnav container', function() {
+describe('tipnav', function() {
   var $test_container_01, $notes,
    default_options, $action_el;
 
@@ -202,13 +202,14 @@ describe('tipnav container', function() {
     });
 
   });
-  describe('tipnav containers', function() {
+  describe('containers', function() {
     describe('hovering over action', function () {
       var $action, $tipnavs,
-       ids = []
+       ids
        ;
       beforeEach(function () {
         loadFixtures('spec.html');
+        ids = [];
         jQuery.fx.off = true;
         $action = $('#link-02');
         $tipnavs = $('.tipnav');
@@ -221,11 +222,41 @@ describe('tipnav container', function() {
         });
       });
 
-      it('should show only first tipna when activated', function () {
+      it('should show only first tipnav when activated', function () {
         $action.trigger('mouseenter');
         expect($('div[data-jqtipnav=' + ids[0] + ']')).toBeVisible();
         expect($('div[data-jqtipnav=' + ids[1] + ']')).toBeHidden();
         expect($('div[data-jqtipnav=' + ids[2] + ']')).toBeHidden();
+        $action.trigger('mouseleave');
+      });
+
+      it('should cycle navs on arrow clicks', function() {
+        var tipnav1 = $('div[data-jqtipnav=' + ids[0] + ']'),
+          tipnav2 = $('div[data-jqtipnav=' + ids[1] + ']'),
+          tipnav3 = $('div[data-jqtipnav=' + ids[2] + ']'),
+          next_arr = tipnav1.find('.jqtipnav-next'),
+          prev_arr = tipnav1.find('.jqtipnav-prev')
+        ;
+        $action.trigger('mouseenter');
+        next_arr.click();
+        expect(tipnav1).toBeHidden();
+        expect(tipnav2).toBeVisible();
+        expect(tipnav3).toBeHidden();
+        next_arr = $(tipnav2).find('.jqtipnav-next');
+        next_arr.trigger('click');
+        expect(tipnav1).toBeHidden();
+        expect(tipnav2).toBeHidden();
+        expect(tipnav3).toBeVisible();
+        next_arr = $(tipnav3).find('.jqtipnav-next');
+        next_arr.trigger('click');
+        expect(tipnav1).toBeVisible();
+        expect(tipnav2).toBeHidden();
+        expect(tipnav3).toBeHidden();
+        prev_arr.click();
+        expect(tipnav1).toBeHidden();
+        expect(tipnav2).toBeHidden();
+        expect(tipnav3).toBeVisible();
+        $action.trigger('mouseleave');
       });
 
     });
