@@ -6,7 +6,7 @@
     "url": "https://github.com/TvrtkoM/jQTipnav.git"
   },
   "main": "build/jqtipnav.min.js",
-  "license": "BSD-3-Cluase",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "babel-cli": "~6.2.0",
     "babel-preset-es2015": "~6.1.18",
