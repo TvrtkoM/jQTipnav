@@ -41,19 +41,13 @@ module.exports = function(grunt) {
         }]
       }
     },
-    concat: {
-      dist: {
-        src: ['js-compiled/container.es6-compiled.js', 'js-compiled/jqtipnav.es6-compiled.js'],
-        dest: 'js-compiled/bundle.js'
-      }
-    },
     uglify: {
       options: {
         mangle: true
       },
       jqtipnav: {
         files: {
-          'build/jqtipnav.min.js': ['js-compiled/bundle.js']
+          'build/jqtipnav.min.js': ['js-compiled/jqtipnav.es6-compiled.js']
         }
       }
     },
@@ -65,14 +59,13 @@ module.exports = function(grunt) {
       }
     }
   });
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-lodash');
-  grunt.registerTask('build-bin', ['concat', 'uglify:jqtipnav']);
+  grunt.registerTask('build-bin', ['uglify:jqtipnav']);
   grunt.registerTask('build-dev', ['lodash']);
-  grunt.registerTask('build', ['babel', 'concat', 'uglify:jqtipnav', 'cssmin']);
+  grunt.registerTask('build', ['babel', 'uglify:jqtipnav', 'cssmin']);
 };
