@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQTipnav</title>
+  <link href="vendor/skeleton/css/normalize.css" type="text/css" rel="stylesheet">
+  <link href="vendor/skeleton/css/skeleton.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/jqtipnav.min.css">
+  <style>
+    body {margin-top: 1em;}
+    pre {margin-top: 0; font-size:0.9em;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h4>jQTipnav</h4>
+  <p>
+    A jQuery plugin which enables showing small navigation bars on interaction with action element.
+  </p>
+  <h5>
+    Usage:
+  </h5>
+  <pre>$element.tipnav(options);</pre>
+  <p>where $element is jquery object pointing to unordered list elements - 'ul' tags. Options must contain 'action_element' jquery object. Please visit <a href="https://github.com/TvrtkoM/jQTipnav">github</a> for more detailed usage and contribution instructions.</p>
+  <p>
+    jQTipnav applied to single element:
+  </p>
+  <div class="row">
+    <div class="seven columns">
+      <pre>$('ul#subnav').tipnav({ 'action_el': 'a#link1' });</pre>
+    </div>
+    <div class="five columns">
+      <p class="text-center">
+        <a href="#" id="action-link-01">hover to show</a>
+      </p>
+    </div>
+  </div>
+  <p>
+    jQTipnav applied to multiple elements:
+  </p>
+  <div class="row">
+    <div class="seven columns">
+      <pre>$('ul.subnav').tipnav({ 'action_el': 'a#link1' });</pre>
+    </div>
+    <div class="five columns">
+      <p class="text-center">
+        <a href="#" id="action-link-02">hover to show</a>
+      </p>
+    </div>
+  </div>
+  <h5>Additional options:</h5>
+  <dl>
+    <dt>fade_time -></dt>
+    <dd>fade out time in milliseconds</dd>
+    <dt>trigger_event -></dt>
+    <dd>use 'click' event to trigger navigation bar visibility</dd>
+  </dl>
+  <p></p>
+  <ul id="tipnav-container-01">
+    <li><a href="">Apples</a> |</li>
+    <li><a href="">Oranges</a> |</li>
+    <li><a href="">Pinepples</a></li>
+  </ul>
+  <ul class="tipnav">
+    <li><a href="">Homes</a> |</li>
+    <li><a href="">Apartments</a> |</li>
+    <li><a href="">Holidays</a></li>
+  </ul>
+  <ul class="tipnav">
+    <li><a href="">Car industry</a> |</li>
+    <li><a href="">Telecommunications</a> |</li>
+    <li><a href="">Welding schools</a></li>
+  </ul>
+  <ul class="tipnav">
+    <li><a href="">Beautiful models</a> |</li>
+    <li><a href="">Express delivery</a></li>
+  </ul>
+</div>
+<a href="https://github.com/TvrtkoM/jQTipnav"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="js/jqtipnav.min.js"></script>
+<script>
+  var options = {
+    'action_element': $('#action-link-01')
+  };
+  $('#tipnav-container-01').tipnav(options);
+  $('.tipnav').tipnav({
+    'action_element': $('#action-link-02')
+  });
+</script>
+</body>
+</html>
