@@ -2,20 +2,27 @@
 
 ## what is this?
 
-> A jQuery plugin enabling to show small navigation lists when clicking on or hovering over action element.
+> A jQuery plugin which enables showing small navigation bars on interaction with action element.
 
 ## usage
 write your HTML:
 
+    <!-- inside head tag -->
+    <link rel="stylesheet" type="text/css" href="[...]/jqtipnav.min.css">
+    
     <ul id="subnav">
       <li><a href="">Apples</a> |</li>
       <li><a href="">Oranges</a> |</li>
       <li><a href="">Pinepples</a></li>
     </ul>
-    <!-- ... ->
+    <!-- ... -->
     <a href="...">Hover over!</a>
+    
+    <!-- before closing body tag -->
+    <script src="[...]/jquery.js"></script>
+    <script src="[...]/build/jqtipnav.min.js"></script>
 
-inside javascript file that's included after jquery.js initialize the plugin:
+Initialize the plugin with:
 
     $('#subnav').tipnav(options);
 
