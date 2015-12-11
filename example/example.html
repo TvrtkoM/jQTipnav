@@ -2,24 +2,30 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>TipNav examples</title>
+  <title>jQTipNav examples</title>
   <link rel="stylesheet" type="text/css" href="../vendor/skeleton/css/normalize.css">
   <link rel="stylesheet" type="text/css" href="../vendor/skeleton/css/skeleton.css">
   <link rel="stylesheet" type="text/css" href="../build/jqtipnav.min.css">
+  <style>
+    body {margin-top: 1em;}
+    pre {margin-top: 0; font-size:0.9em;}
+  </style>
 </head>
 <body>
 <div class="container">
-  <h4>TipNav usage</h4>
+  <h4>jQTipnav</h4>
   <p>
-    TipNav is small JQuery plugin that enables implementing small navigation lists showing when mouse hovers over or clicks on action element.
+    A jQuery plugin which enables showing small navigation bars on interaction with action element.
   </p>
-  <p>
+  <h5>
     Usage:
-  </p>
+  </h5>
   <pre>$element.tipnav(options);</pre>
-  <p>Options argument must contain 'action_element' jquery object.</p>
   <p>
-    Tipnav applied to single element.
+    where $element is jquery object pointing to unordered list elements - 'ul' tags. Options must contain 'action_element' jquery object.
+  </p>
+  <p>
+    jQTipnav applied to single element:
   </p>
   <div class="row">
     <div class="seven columns">
@@ -32,7 +38,7 @@
     </div>
   </div>
   <p>
-    Tipnav applied to multiple elements.
+    jQTipnav applied to multiple elements:
   </p>
   <div class="row">
     <div class="seven columns">
@@ -49,7 +55,7 @@
     <dt>fade_time -></dt>
     <dd>fade out time in milliseconds</dd>
     <dt>trigger_event -></dt>
-    <dd>use 'click' to trigger tipnav</dd>
+    <dd>use 'click' event to trigger navigation bar visibility</dd>
   </dl>
   <p></p>
   <ul id="tipnav-container-01">
