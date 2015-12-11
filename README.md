@@ -15,9 +15,7 @@ write your HTML:
     <!-- ... ->
     <a href="...">Hover over!</a>
 
-
 inside javascript file that's included after jquery.js initialize the plugin:
-
 
     $('#subnav').tipnav(options);
 
@@ -33,13 +31,16 @@ if multiple navigation lists are matched inside jquery selector the plugin will 
 
 ## contributing
 
-Have some ideas to make this plugin work better or want to add a feature? Following grunt tasks should be used to get you going:
+Have some ideas to make this plugin work better or want to add a feature? Following commands and grunt tasks will get you going:
 
+* npm install - install npm development dependencies
+* bower install - install bower development dependencies
 * grunt babel - compile es6 to es5 inside *js-compiled* directory
 * grunt watch - auto compilation when files change
 * grunt build-dev - build dependencies for tests
 * grunt karma - run tests
 
+After building installing bower development dependencies example/example.html can be ran to see plugin in action.
 Jasmine is used for test cases which are in spec.js file and writing some along with added code would be really helpful.
 
 Use *grunt build* to build the binaries and *bower install* to get jQuery (it will be downloaded to vendor directory).
