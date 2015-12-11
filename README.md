@@ -1,4 +1,4 @@
-# jQTipnav
+# [jQTipnav](http://tvrtkom.github.io/jQTipnav)
 
 ## what is this?
 
