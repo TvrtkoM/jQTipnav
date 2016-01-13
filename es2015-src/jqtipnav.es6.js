@@ -281,17 +281,17 @@
      wrap
     ;
     if(typeof(args[0]) !== 'string') {
-      let container;
       opts = options;
       action = opts.action_element;
       if(multi) {
         wrap = true;
         matchedEl.each(function() {
+          let container;
           container = new jQTipnav.Container(action, $(this), opts, wrap);
           if(wrap === true) wrap = container.$wrap;
         });
       } else {
-        container = new jQTipnav.Container(action, $(this), opts);
+        new jQTipnav.Container(action, $(this), opts);
       }
       return matchedEl.hide();
     } else {
