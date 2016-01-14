@@ -7,13 +7,14 @@ module.exports = function(grunt) {
           interrupt: true
         },
         files: ['es2015-src/*'],
-        tasks: ['babel:build']
+        tasks: ['babel:build', 'karma:dev:run']
       }
     },
     karma: {
       options: {
         configFile: 'karma.conf.js',
-        browsers: ['Firefox']
+        browsers: ['Firefox'],
+        singleRun: true
       },
       dev: {
         reporters: 'dots'
@@ -66,6 +67,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-lodash');
   grunt.registerTask('build-bin', ['uglify:jqtipnav']);
-  grunt.registerTask('build-dev', ['lodash']);
+  grunt.registerTask('dev-dep', ['lodash']);
   grunt.registerTask('build', ['babel', 'uglify:jqtipnav', 'cssmin']);
 };
