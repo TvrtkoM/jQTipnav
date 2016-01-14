@@ -1,12 +1,19 @@
 {
   "name": "jQTipnav",
-  "version": "0.0.8",
+  "version": "1.0.0",
+  "description": "jQuery plugin which enables showing small navigation bars on interaction with action element",
+  "homepage": "http://tvrtkom.github.io/jQTipnav/",
   "repository": {
     "type": "git",
     "url": "https://github.com/TvrtkoM/jQTipnav.git"
   },
+  "bugs": "https://github.com/TvrtkoM/jQTipnav/issues",
   "main": "build/jqtipnav.min.js",
   "license": "BSD-3-Clause",
+  "author": {
+    "email": "tvrtkom@gmail.com",
+    "name": "TvrtkoM"
+  },
   "devDependencies": {
     "babel-cli": "~6.2.0",
     "babel-preset-es2015": "~6.1.18",
