@@ -5,7 +5,8 @@
 > A jQuery plugin which enables showing small navigation bars on interaction with action element.
 
 ## usage
-write your HTML:
+
+Write your HTML:
 
     <!-- inside head tag -->
     <link rel="stylesheet" type="text/css" href="[...]/jqtipnav.min.css">
@@ -26,15 +27,25 @@ Initialize the plugin with:
 
     $('#subnav').tipnav(options);
 
-where options is an object containing at least *action_element* property
-
-if multiple navigation lists are matched inside jquery selector the plugin will show arrows which are used to switch between lists
+where options is an object containing at least *action_element* property.
+If multiple navigation lists are matched inside jquery selector, plugin will show additional arrows for navigation.
+Clicking on arrow will show you next/previous navigation list.
 
 ## options
 
 * action_element - jQuery selector object (required)
 * fade_time - set fade-out time in ms
 * trigger_event - set to 'click' to trigger showing and hiding tipnav on mouse click instead hovering
+
+## clean method
+
+Plugin can be called with string 'clean' as first argument. In this case it will try to revert back to state before plugin is initialized,
+removing all created html elements.
+
+e.g
+
+    $(document).tipnav('clean') // removes all jqtipnav elements from page and shows hidden ones
+    $('#subnav').tipnav('clean') // removes all jqtipnv elements but only for matched element (#subnav)
 
 ## contributing
 
