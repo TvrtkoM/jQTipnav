@@ -52,16 +52,16 @@
     get_container_position(container) {
       // return position of the navigation container on the screen
       var geometry = this.get_geometry(container),
-        ac_mid = geometry.ac.off.left + geometry.ac.width/2,
-        top = geometry.ac.off.top - geometry.tn.height,
-        left
-        ;
-      if(geometry.tn.width <= geometry.ac.width || geometry.ac.off.left > geometry.tn.width/2) {
-        left = ac_mid - geometry.tn.width/2;
+       ac_mid = geometry.ac.off.left + geometry.ac.width / 2,
+       top = geometry.ac.off.top - geometry.tn.height,
+       left
+       ;
+      if (geometry.tn.width <= geometry.ac.width || geometry.ac.off.left > geometry.tn.width / 2) {
+        left = ac_mid - geometry.tn.width / 2;
       } else {
         left = geometry.ac.off.left;
       }
-      if(geometry.ac.off.top < geometry.tn.height) {
+      if (geometry.ac.off.top < geometry.tn.height) {
         top = geometry.ac.off.top + geometry.ac.height;
       }
       return {
@@ -71,17 +71,17 @@
     }
 
     bind_container(container) {
-      // bind events to container
+      // sets up action element with basic events for displaying containers
       var set_hide_timeout = () => {
-        // stores timeout to element's data attribute after
-        // container fades out after timeout of 200
-          container.data('hoverTimeout', setTimeout(() => {
-            container.fadeOut(this.fade_time || 200, () => {
-              container.data('open', false);
-            })
-          }, 200));
-        }
-        ;
+         // stores timeout to element's data attribute after
+         // container fades out after timeout of 200
+         container.data('hoverTimeout', setTimeout(() => {
+           container.fadeOut(this.fade_time || 200, () => {
+             container.data('open', false);
+           })
+         }, 200));
+       }
+       ;
       this.$el.bind(this.trigger_event, (e) => {
         // on specified trigger event container should appear
 
@@ -90,35 +90,35 @@
         if (typeof container.data('hoverTimeout') !== 'undefined')
           clearTimeout(container.data('hoverTimeout'));
 
-        if(this.trigger_event === 'click') {
+        if (this.trigger_event === 'click') {
           // start timeout if container visible and only on 'click'
-          if(container.data('open') === true) {
+          if (container.data('open') === true) {
             set_hide_timeout();
           }
         }
         container.show().data('open', true);
       });
-      if(this.trigger_event !== 'click') {
-        // runs only on 'click'
-        this.$el.mouseleave(function() {
+      if (this.trigger_event !== 'click') {
+        // runs only on 'hover'
+        this.$el.mouseleave(function () {
           set_hide_timeout();
         });
-        container.mouseenter((function() {
+        container.mouseenter((function () {
           clearTimeout($(this).data('hoverTimeout'));
         }));
-        container.mouseleave(function() {
+        container.mouseleave(function () {
           set_hide_timeout();
         });
       }
-
     }
 
     setup_container(container, wrap) {
-      // sets up container with additional events
+      // sets up container with additional events for navigation and positioning
       var css,
-        arrows = container.find('.jqtipnav-prev, .jqtipnav-next')
-        ;
+       arrows = container.find('.jqtipnav-prev, .jqtipnav-next')
+       ;
       if(arrows.length > 0) {
+        // show next visible element when arrows are clicked
         arrows.bind('click', (e) => {
           var $el, arrow = $(e.target);
           e.preventDefault();
@@ -134,12 +134,14 @@
               $el = container.siblings(':first');
             }
           }
+          // hide last visible container, show next one and set tipnav container position
           container.hide();
           $el.show();
           css = this.get_container_position($el);
           wrap.css(css);
         });
       }
+
       this.$el.bind(this.trigger_event, (e) => {
         // on trigger event calculate and set position of container
         if(!wrap) {
@@ -166,63 +168,48 @@
       this.action = new jQTipnav.Action($action_el, options);
       this.container = jQTipnav.Container.build($copy, wrap);
 
-      // define some properties
-      Object.defineProperty(this, '$wrap', {
-        'writable': false,
-        'value': this.container.$wrap
-      });
+      this.$wrap = this.container.$wrap;
 
-      Object.defineProperty(this, '$container', {
-        set: (value) => {
-          // setting property removes original elemnet's parent
-          var els = value.children().clone();
-          this.container.$el.find('ul').append(els);
-        },
-        get: () => {
-          return this.container.$el;
-        }
-      });
-      Object.defineProperty(this, 'id', {
-        'writable': false,
-        'value': this.container.id
-      });
-
-      // TODO: merge setup_container into bind_container and refactor code below
-      // it should be just this.action.bind_container
       if(wrap === true) {
         this.action.bind_container(this.$wrap);
       } else if(!wrap) {
-        this.action.bind_container(this.$container);
+        this.action.bind_container(this.container.$el);
       }
-      this.action.setup_container(this.$container, this.$wrap);
+      this.action.setup_container(this.container.$el, this.$wrap);
+    }
+
+    static build_simple($copy, multi) {
+      // bulds only container
+      var id = unique.generate(),
+       $el = $('<div data-jqtipnav=' + id + '><ul></ul></div>')
+       ;
+      $el.find('ul').append($copy.children().clone());
+      $copy.attr('data-jqtipnav-main', id);
+      if(!!multi) {
+        let arrow_p = $('<li><a class="jqtipnav-prev" href="#">&lt;</a></li>'),
+         arrow_n = $('<li><a class="jqtipnav-next" href="#">&gt;</a></li>')
+         ;
+        $el.find('ul').prepend(arrow_p).append(arrow_n);
+      }
+      return $el;
     }
 
     static build($copy, wrap=false) {
       // build a container element markup and return it
       // adds $copy contents and arrows if content should be wrapped (multiple matched)
       var $el, $wrap;
-      if(typeof wrap === 'boolean' && wrap === true) {
+      if(wrap === true) {
         $wrap = $('<div class="jqtipnav-wrap"></div>');
         $wrap.css('position', 'absolute');
-        $el = jQTipnav.Container.build($copy, $wrap).$el;
-        $el.appendTo($wrap);
-        $el.show();
+        $el = jQTipnav.Container.build_simple($copy, wrap);
+        $el.show().appendTo($wrap);
         $wrap.appendTo('body');
         $wrap.hide();
       }
       else {
-        // assign unique id to each container
-        let id = unique.generate();
-        $el = $('<div data-jqtipnav=' + id + '><ul></ul></div>');
-        $el.find('ul').append($copy.children().clone());
-        $copy.attr('data-jqtipnav-main', id);
+        $el = jQTipnav.Container.build_simple($copy, wrap);
         if(!!wrap) {
-          // if wrapped add arrow buttons
-          let arrow_p = $('<li><a class="jqtipnav-prev" href="#">&lt;</a></li>'),
-            arrow_n = $('<li><a class="jqtipnav-next" href="#">&gt;</a></li>')
-            ;
           $wrap = wrap;
-          $el.find('ul').prepend(arrow_p).append(arrow_n);
           $el.appendTo($wrap);
           $el.hide();
         }
