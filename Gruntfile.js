@@ -1,5 +1,24 @@
+var path = require('path');
+
 module.exports = function(grunt) {
   'use strict';
+
+  // copy recursively files from 'src' directory to 'dest' dir under vendor
+  var copyToVendor = function(src, dest) {
+    grunt.file.recurse(src, function(abs, root, sub, filename) {
+      var d = path.join('vendor', dest, sub || '', filename);
+      grunt.file.copy(abs, d, {
+        process: function(file, src) {
+          if(grunt.file.exists(d)) {
+            return false;
+          }
+          grunt.log.writeln('copying: ' + src + ' to ' + d);
+          return file;
+        }
+      });
+    });
+  };
+
   grunt.initConfig({
     watch: {
       js: {
@@ -7,7 +26,7 @@ module.exports = function(grunt) {
           interrupt: true
         },
         files: ['es2015-src/*'],
-        tasks: ['babel:build', 'karma:dev:run']
+        tasks: ['build-dep', 'babel', 'build-bin', 'karma:dev:run']
       }
     },
     karma: {
@@ -22,7 +41,7 @@ module.exports = function(grunt) {
     },
     lodash: {
       build: {
-        dest: 'vendor/lodash.js',
+        dest: 'vendor/lodash/lodash.js',
         options: {
           category: ['collection', 'function']
         }
@@ -66,7 +85,20 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-lodash');
-  grunt.registerTask('build-bin', ['uglify:jqtipnav']);
-  grunt.registerTask('dev-dep', ['lodash']);
-  grunt.registerTask('build', ['babel', 'uglify:jqtipnav', 'cssmin']);
+
+  // prepares project dependencies - copy jquery and lodash to vendor directory
+  grunt.registerTask('build-dep', 'prepare development dependencies', function() {
+    if(!grunt.file.exists('vendor/lodash/lodash.js') || !grunt.file.exists('vendor/lodash/lodash.min.js')) {
+      grunt.task.run('lodash');
+    }
+
+    copyToVendor('node_modules/skeleton-css/css', 'skeleton');
+    copyToVendor('node_modules/jquery/dist', 'jquery');
+  });
+
+  // build javascript binary in build/ directory
+  grunt.registerTask('build-bin', ['babel', 'uglify:jqtipnav']);
+
+  // build all the development and binary files (js & css)
+  grunt.registerTask('build', ['build-dep', 'babel', 'uglify:jqtipnav', 'cssmin']);
 };
