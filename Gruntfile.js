@@ -26,7 +26,7 @@ module.exports = function(grunt) {
           interrupt: true
         },
         files: ['es2015-src/*'],
-        tasks: ['build-dep', 'babel', 'build-bin', 'karma:dev:run']
+        tasks: ['build-dep', 'babel', 'build-bin', 'karma:dev']
       }
     },
     karma: {
