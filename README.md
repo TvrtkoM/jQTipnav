@@ -53,7 +53,7 @@ Have some ideas to make this plugin work better or want to add a feature? Follow
 
 * npm install - install npm development dependencies
 * grunt build - run build-dep task, compile es2015 code, copy minified js and css files to *build* directory
-* grunt build-dep - build and copy development dependencies
+* grunt build-dep - build and copy dependencies
 * grunt build-bin - compile es2015 code and copy it minified to *build* directory
 * grunt babel - compile es2015 code to es5 inside *js-compiled* directory
 * grunt karma - run tests
