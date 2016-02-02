@@ -103,10 +103,16 @@
         this.$el.mouseleave(function () {
           set_hide_timeout();
         });
-        container.mouseenter((function () {
+        container.mouseenter(function () {
+          if(container.data('fade') == true) {
+            container.stop();
+            container.fadeIn(100);
+            container.data('fade', false);
+          }
           clearTimeout($(this).data('hoverTimeout'));
-        }));
+        });
         container.mouseleave(function () {
+          container.data('fade', true);
           set_hide_timeout();
         });
       }
