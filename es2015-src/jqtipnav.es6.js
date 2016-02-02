@@ -96,6 +96,8 @@
             set_hide_timeout();
           }
         }
+        let css = this.get_container_position(container);
+        container.css(css);
         container.show().data('open', true);
       });
       if (this.trigger_event !== 'click') {
@@ -150,10 +152,7 @@
 
       this.$el.bind(this.trigger_event, (e) => {
         // on trigger event calculate and set position of container
-        if(!wrap) {
-          css = this.get_container_position(container);
-          container.show().css(css);
-        } else {
+        if(wrap) {
           let $el = wrap.find('div[data-jqtipnav]:visible');
           css = this.get_container_position($el);
           wrap.css(css);
