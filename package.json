@@ -27,7 +27,7 @@
     "jasmine": "2.3.2",
     "jasmine-jquery": "2.1.1",
     "jquery": "^2.2.0",
-    "karma": "0.13.14",
+    "karma": "^0.13.19",
     "karma-firefox-launcher": "0.1.6",
     "karma-jasmine": "0.3.6",
     "lodash-cli": "~3.10.1",
