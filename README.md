@@ -52,14 +52,12 @@ e.g
 Have some ideas to make this plugin work better or want to add a feature? Following commands and grunt tasks will get you going:
 
 * npm install - install npm development dependencies
-* bower install - install bower development dependencies
-* grunt babel - compile es6 to es5 inside *js-compiled* directory
-* grunt dev-dep - build development dependencies
+* grunt build - run build-dep task, compile es2015 code, copy minified js and css files to *build* directory
+* grunt build-dep - build and copy development dependencies
+* grunt build-bin - compile es2015 code and copy it minified to *build* directory
+* grunt babel - compile es2015 code to es5 inside *js-compiled* directory
 * grunt karma - run tests
-* grunt watch - auto compilation and test when files change
+* grunt watch - auto compile and test code when files change
 
-Use *grunt build* to build the binaries and *bower install* to get jQuery (it will be downloaded to vendor directory).
-
-After building, installing bower development dependencies example/example.html can be ran to see plugin in action.
-Jasmine is used for test cases which are in spec.js file and writing some along with added code would be really helpful.
-
+After running *grunt build*, example/example.html can be used to see plugin in action.
+Test cases in spec.js are done by using Jasmine. If contributing please write test cases for your additions.
