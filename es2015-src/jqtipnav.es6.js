@@ -81,9 +81,9 @@
       // sets up action element with basic events for displaying containers
       var set_hide_timeout = () => {
          // stores timeout to element's data attribute after
-         // container fades out after timeout of 200
+         // container fades out after timeout of 500
          container.data('hoverTimeout', setTimeout(() => {
-           container.fadeOut(this.fade_time || 200, () => {
+           container.fadeOut(this.fade_time || 500, () => {
              container.data('open', false);
            })
          }, 200));
@@ -163,7 +163,7 @@
     constructor($action_el, $copy, options, wrap) {
       var default_options = {
           'trigger_event': 'mouseenter',
-          'fade_time': 200
+          'fade_time': 500
         },
         options = $.extend({}, default_options, options || {}),
         wrap = wrap || false // wrap element? boolean or jQuery object
