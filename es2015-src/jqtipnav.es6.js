@@ -52,14 +52,21 @@
     get_container_position(container) {
       // return position of the navigation container on the screen
       var geometry = this.get_geometry(container),
+       full_width = $(window).width(),
+       room = (geometry.tn.width - geometry.ac.width) / 2,
        ac_mid = geometry.ac.off.left + geometry.ac.width / 2,
        top = geometry.ac.off.top - geometry.tn.height,
        left
        ;
-      if (geometry.tn.width <= geometry.ac.width || geometry.ac.off.left > geometry.tn.width / 2) {
+      if (geometry.tn.width <= geometry.ac.width || geometry.ac.off.left > room
+          && full_width - (geometry.ac.off.left + geometry.ac.width) > room) {
         left = ac_mid - geometry.tn.width / 2;
       } else {
-        left = geometry.ac.off.left;
+        if(full_width - (geometry.ac.off.left + geometry.ac.width) < room) {
+          left = full_width - geometry.tn.width;
+        } else {
+          left = 0;
+        }
       }
       if (geometry.ac.off.top < geometry.tn.height) {
         top = geometry.ac.off.top + geometry.ac.height;
@@ -84,8 +91,10 @@
        ;
       this.$el.bind(this.trigger_event, (e) => {
         // on specified trigger event container should appear
-
         e.preventDefault();
+        container.show().css('left', 0);
+        let css = this.get_container_position(container);
+        container.data('open', true).css(css);
         // clear hover timeout each time element is triggered
         if (typeof container.data('hoverTimeout') !== 'undefined')
           clearTimeout(container.data('hoverTimeout'));
@@ -96,9 +105,6 @@
             set_hide_timeout();
           }
         }
-        let css = this.get_container_position(container);
-        container.css(css);
-        container.show().data('open', true);
       });
       if (this.trigger_event !== 'click') {
         // runs only on 'hover'
@@ -143,21 +149,13 @@
             }
           }
           // hide last visible container, show next one and set tipnav container position
+          wrap.css('left', 0);
           container.hide();
           $el.show();
           css = this.get_container_position($el);
           wrap.css(css);
         });
       }
-
-      this.$el.bind(this.trigger_event, (e) => {
-        // on trigger event calculate and set position of container
-        if(wrap) {
-          let $el = wrap.find('div[data-jqtipnav]:visible');
-          css = this.get_container_position($el);
-          wrap.css(css);
-        }
-      });
     };
   });
 
